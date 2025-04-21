@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18ffb4eb-6cda-4c79-9150-f22c3074f6ab" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/VideoGameTutoringSite.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/fortnite.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/lol.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/marvel.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/overwatch.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/pokemon.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/rocketleague.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/smash.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/static/games/valorant.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutoring_Website/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/booking_thread.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/browse_coaches.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/coach_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/coach_inbox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/create_coach_profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/leave_review.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/player_dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theme/static_src/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theme/static_src/input.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theme/static_src/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theme/static_src/tailwind.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="18ffb4eb-6cda-4c79-9150-f22c3074f6ab" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744746262661</updated>
       <workItem from="1744746263690" duration="15485000" />
-      <workItem from="1745230107318" duration="4607000" />
+      <workItem from="1745230107318" duration="4940000" />
     </task>
     <servers />
   </component>
