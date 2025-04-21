@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 px-4 py-10">
+    <div class="max-w-5xl mx-auto bg-gray-800 rounded-lg shadow-md p-8 animate-fade-in-up">
+        <h2 class="text-3xl font-bold text-primary mb-6">📬 My Booking Requests</h2>
+
+        {% if bookings %}
+        <ul class="space-y-6">
+            {% for booking in bookings %}
+            <li class="bg-gray-700 p-4 rounded-md shadow">
+                <p><strong>From:</strong> {{ booking.player.username }}</p>
+                <p><strong>Session Date:</strong> {{ booking.session_date }}</p>
+                <p><strong>Time:</strong> {{ booking.session_time }}</p>
+                <p><strong>Discord:</strong> {{ booking.discord_id }}</p>
+                <p><strong>Message:</strong><br>{{ booking.message }}</p>
+                <p class="text-sm text-gray-400 mt-2">Submitted on {{ booking.submitted_at }}</p>
+                <p>
+                    <strong>Payment Status:</strong>
+                    {% if booking.paid %}
+                        <span class="text-green-400 font-semibold">✅ Paid</span>
+                    {% else %}
+                        <span class="text-yellow-400 font-semibold">❌ Not Paid</span>
+                    {% endif %}
+                </p>
+                <div class="mt-4 flex justify-end">
+                    <a href="{% url 'booking_thread' booking.id %}"
+                        class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-1.5 px-4 rounded-md shadow">
+                        View Message Thread
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-gray-300">No booking requests yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Browse Coaches</title>
+    <style>
+        .game-btn {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        .game-btn img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Browse By Game</h2>
+    <div>
+        {% for code, name in games %}
+            <div class="game-btn">
+                <a href="{% url 'browse_by_game' code %}">
+                    <img src="{% static 'games/'|add:code|add:'.jpg' %}" alt="{{ name }}">
+                    <div>{{ name }}</div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <hr>
+    <h3>Available Coaches:</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for coach in coaches %}
+        <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px; width: 250px;">
+            <h4>
+                <a href="{% url 'coach_detail' coach.id %}">{{ coach.user.username }}</a><br>
+
+                {% if coach.average_rating %}
+                    {% with coach.average_rating|floatformat:0 as stars %}
+                        {% for i in "12345"|slice:":stars"|make_list %}
+                            ★
+                        {% endfor %}
+                        ({{ coach.average_rating }} avg)
+                    {% endwith %}
+                {% else %}
+                    <span>No Ratings Yet</span>
+                {% endif %}
+            </h4>
+            <p><strong>Game:</strong> {{ coach.get_game_display }}</p>
+            <p><strong>Rank:</strong> {{ coach.rank }}</p>
+            <p><strong>Rate:</strong> ${{ coach.rate_per_hour }}/hr</p>
+            <p><strong>Availability:</strong> {{ coach.availability }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

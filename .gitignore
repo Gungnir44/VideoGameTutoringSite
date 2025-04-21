@@ -1,0 +1,19 @@
+# Python
+*.pyc
+__pycache__/
+db.sqlite3
+
+# Environments
+.venv/
+env/
+venv/
+
+# IDEs
+.idea/
+.vscode/
+
+# Node.js (Tailwind stuff)
+node_modules/
+
+# Static cache
+staticfiles/

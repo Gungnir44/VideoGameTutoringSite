@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+    <div class="bg-green-600 text-white p-4 rounded mb-4">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="min-h-screen bg-gray-900 px-4 py-10">
+    <div class="max-w-5xl mx-auto bg-gray-800 rounded-lg shadow-md p-8 animate-fade-in-up">
+        <h2 class="text-3xl font-bold text-primary mb-6">🗓️ My Bookings</h2>
+
+        {% if bookings %}
+        <ul class="space-y-6">
+            {% for booking in bookings %}
+            <li class="bg-gray-700 p-4 rounded-md shadow text-white">
+                <p><strong>Coach:</strong> {{ booking.coach.user.username }}</p>
+                <p><strong>Game:</strong> {{ booking.coach.get_game_display }}</p>
+                <p><strong>Session Date:</strong> {{ booking.session_date }}</p>
+                <p><strong>Time:</strong> {{ booking.session_time }}</p>
+                <p><strong>Your Message:</strong><br>{{ booking.message }}</p>
+
+                <div class="mt-4 flex flex-wrap gap-4">
+                    <a href="{% url 'booking_thread' booking.id %}"
+                        class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md shadow">
+                        💬 Open Thread
+                    </a>
+
+                    {% if not booking.review %}
+                    <a href="{% url 'leave_review' booking.id %}"
+                        class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-md shadow">
+                        ⭐ Leave Review
+                    </a>
+                    {% else %}
+                    <span class="text-sm text-gray-300">✅ Reviewed</span>
+                    {% endif %}
+                    <p>
+                        <strong>Payment Status:</strong>
+                        {% if booking.paid %}
+                            <span class="text-green-400 font-semibold">✅ Paid</span>
+                        {% else %}
+                            <span class="text-yellow-400 font-semibold">❌ Not Paid</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-gray-300">You haven't made any bookings yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Player Sign Up - Game Tutor{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-900 px-4 py-12">
+    <div class="w-full max-w-lg bg-gray-800 rounded-lg shadow-lg p-8 transform transition-all duration-500 ease-out translate-y-4 animate-fade-in-up">
+        <h2 class="text-2xl font-bold text-white text-center mb-6">Player Sign Up</h2>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <div>
+                <label for="id_username" class="block text-sm font-medium text-gray-300 mb-1">Username</label>
+                <input type="text" name="username" maxlength="150" required autofocus id="id_username"
+                       class="w-full rounded-md bg-gray-700 text-white border-gray-600 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="id_email" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+                <input type="email" name="email" maxlength="254" required id="id_email"
+                       class="w-full rounded-md bg-gray-700 text-white border-gray-600 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="id_password1" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                <input type="password" name="password1" autocomplete="new-password" required id="id_password1"
+                       class="w-full rounded-md bg-gray-700 text-white border-gray-600 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="id_password2" class="block text-sm font-medium text-gray-300 mb-1">Confirm Password</label>
+                <input type="password" name="password2" autocomplete="new-password" required id="id_password2"
+                       class="w-full rounded-md bg-gray-700 text-white border-gray-600 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div class="pt-4">
+                <button type="submit"
+                        class="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md shadow-md transition-all">
+                    Create Account
+                </button>
+            </div>
+        </form>
+
+        <p class="text-center text-sm text-gray-400 mt-6">
+            Already have an account?
+            <a href="{% url 'login' %}" class="text-indigo-400 hover:underline">Log in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

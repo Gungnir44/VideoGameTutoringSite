@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 px-4 py-10">
+    <div class="max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-md p-8 animate-fade-in-up">
+        <h2 class="text-3xl font-bold text-primary mb-4">{{ coach.user.username }}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6 text-gray-300">
+            <div>
+                <p><strong>Game:</strong> {{ coach.get_game_display }}</p>
+                <p><strong>Rank:</strong> {{ coach.rank }}</p>
+                <p><strong>Rate:</strong> ${{ coach.rate_per_hour }}/hr</p>
+                <p><strong>Availability:</strong> {{ coach.availability }}</p>
+                <p><strong>Bio:</strong><br> {{ coach.bio }}</p>
+                {% if coach.average_rating %}
+                    <p class="mt-2"><strong>Rating:</strong>
+                        {% with coach.average_rating|floatformat:0 as stars %}
+                            {% for i in "12345"|slice:":stars"|make_list %}★{% endfor %}
+                            ({{ coach.average_rating }} avg)
+                        {% endwith %}
+                    </p>
+                {% else %}
+                    <p>No ratings yet</p>
+                {% endif %}
+            </div>
+
+            {% if request.user.is_authenticated and request.user.is_player %}
+            <div class="bg-gray-700 p-6 rounded-md">
+                <h3 class="text-xl font-semibold text-white mb-4">📅 Request a Session</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit"
+                        class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white py-2 px-4 rounded-md font-semibold shadow">
+                        Book Session
+                    </button>
+
+                    <script src="https://www.paypal.com/sdk/js?client-id=AcTSl6DQL7F05OL3pJTaNcHG5aRj2nOHhp0BX6etWLyv-BqZWI9rDd8akevDTvwqEzCaoLCwF05AAHSi&currency=USD"></script>
+
+                    <div id="paypal-button-container" class="mt-6"></div>
+
+                    <script>
+                    paypal.Buttons({
+                        createOrder: function(data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: '{{ coach.rate_per_hour }}'  // whatever price you set
+                                    },
+                                    description: "Coaching session with {{ coach.user.username }}"
+                                }]
+                            });
+                        },
+                        onApprove: function(data, actions) {
+                            return actions.order.capture().then(function(details) {
+                                // ✅ After payment, call Django to mark booking as paid
+                                fetch("{% url 'mark_booking_paid' booking_id=1 %}", {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRFToken': '{{ csrf_token }}',
+                                    }
+                                }).then(response => {
+                                    if (response.ok) {
+                                        window.location.href = "{% url 'player_dashboard' %}";
+                                    } else {
+                                        alert('Payment succeeded but booking update failed.');
+                                    }
+                                });
+                            });
+                        }
+                    }).render('#paypal-button-container');
+                    </script>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+
+        <hr class="my-8 border-gray-600">
+
+        <h3 class="text-xl font-bold text-white mb-4">⭐ Reviews</h3>
+        {% for review in coach.reviews.all %}
+            <div class="bg-gray-700 p-4 rounded mb-4">
+                <p><strong>{{ review.player.username }}</strong> rated it {{ review.rating }}★</p>
+                <p class="text-gray-300">{{ review.comment }}</p>
+            </div>
+        {% empty %}
+            <p class="text-gray-400">No reviews yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
