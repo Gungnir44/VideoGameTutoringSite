@@ -12,7 +12,7 @@ This website allows users to:
 - Manage bookings through personalized Dashboards
 - (Optional) Donate to support the platform
 
-Built with ❤️ using Django, TailwindCSS (for modern dark UI), and PayPal Integration.
+Built with Django, TailwindCSS (for modern dark UI), and PayPal Integration.
 
 ---
 
